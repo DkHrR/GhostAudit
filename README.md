@@ -6,9 +6,15 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![Vite](https://img.shields.io/badge/Vite-7-purple)
 ![Midnight](https://img.shields.io/badge/Midnight-ZK-success)
-![MLH](https://img.shields.io/badge/MLH-Midnight_Hackathon-orange)
+![MLH](https://img.shields.io/badge/MLH-Hackathon-orange)
 
----# GhostAudit — Privacy-Preserving Software Due Diligence
+---
+
+## 🌟 Why GhostAudit?
+
+GhostAudit enables privacy-preserving software due diligence by combining intelligent repository analysis with Midnight Zero-Knowledge Proofs. Instead of exposing proprietary source code, organizations can prove the integrity of repository audit results through cryptographic verification, helping founders, investors, and auditors establish trust while preserving confidentiality.
+
+--- GhostAudit — Privacy-Preserving Software Due Diligence
 
 GhostAudit is a modern, enterprise-grade software due diligence platform built for startups, enterprises, investors, and M&A teams. It enables organizations to prove the quality, security, and maturity of their software repositories without revealing proprietary source code.
 
