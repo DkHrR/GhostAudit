@@ -1,0 +1,32 @@
+pragma language_version 0.23;
+
+// Ledger state mapping: proofId -> auditDigest
+export ledger proofRegistry: Map<Opaque<"string">, Opaque<"string">>;
+
+// Disclosed scores ledger: proofId -> securityScore
+export ledger disclosedScores: Map<Opaque<"string">, Opaque<"string">>;
+
+// Contract metadata version variables
+export ledger contractVersion: Opaque<"string">;
+export ledger schemaVersion: Opaque<"string">;
+
+/**
+ * Anchors a new repository audit digest commitment on the ledger.
+ */
+export circuit anchorAudit(
+  proofId: Opaque<"string">,
+  digest: Opaque<"string">
+): [] {
+  proofRegistry[proofId] = disclose(digest);
+}
+
+/**
+ * Selectively discloses a verified security score to the ledger.
+ */
+export circuit discloseScore(
+  proofId: Opaque<"string">,
+  score: Opaque<"string">,
+  salt: Opaque<"string">
+): [] {
+  disclosedScores[proofId] = disclose(score);
+}

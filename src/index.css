@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0A;
+  --color-surface: #121212;
+  --color-border: #242424;
+  --color-primary: #0000FE;
+  --color-hover: #3B4BFF;
+  --color-accent: #0000FE;
+  --color-danger: #EF4444;
+  
+  /* Additional text shades for utility classes */
+  --color-zinc-405: #B5B5BE;
+  --color-zinc-450: #A8A8B3;
+  --color-zinc-500: #71717A;
+  --color-zinc-600: #52525B;
+  --color-zinc-800: #27272A;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Custom Scrollbar styling (Minimal & Dark) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #242424;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Flat Panel styling instead of glowing glassmorphism */
+.glass-panel {
+  background: #121212;
+  border: 1px solid #242424;
+  border-radius: 12px;
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover {
+  background: #161616;
+  border-color: #3f3f46;
+}
+
+/* Global Typography Scaling & Readability Adjustments */
+body {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px; /* Body text increased from 14px */
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Main headings target (48px -> 54px) */
+h1, .text-3xl {
+  font-size: 34px !important;
+  font-weight: 800;
+  line-height: 1.2;
+}
+@media (min-width: 768px) {
+  h1, .text-3xl {
+    font-size: 54px !important;
+  }
+}
+
+/* Section headings target (30px -> 34px) */
+h2, .text-xl {
+  font-size: 24px !important;
+  font-weight: 700;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  h2, .text-xl {
+    font-size: 34px !important;
+  }
+}
+
+/* Card titles target (18px -> 20px) */
+h3, .text-lg {
+  font-size: 20px !important;
+  font-weight: 700;
+}
+
+/* Input Fields Polish - Unified Rounded-xl & Padding */
+input[type="text"], 
+input[type="email"], 
+input[type="url"],
+form input {
+  height: 46px !important;
+  border-radius: 12px !important; /* rounded-xl */
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  font-size: 14px !important;
+  background-color: #000000 !important;
+  border: 1px solid #242424 !important;
+  color: #FFFFFF !important;
+  transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus, 
+input[type="email"]:focus, 
+input[type="url"]:focus {
+  border-color: #71717A !important;
+  outline: none !important;
+}
+
+input.pl-icon-input {
+  padding-left: 44px !important;
+}
+
+/* Spacing between sections */
+.space-y-6 > * + * {
+  margin-top: 1.75rem !important; /* Widen spacing */
+}
+.space-y-8 > * + * {
+  margin-top: 2.25rem !important; /* Widen spacing */
+}
