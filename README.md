@@ -1,108 +1,78 @@
 # 👻 GhostAudit
 
-> Privacy-Preserving Software Due Diligence powered by AI and Midnight Zero-Knowledge Proofs.
+Privacy-preserving software due diligence powered by AI analysis and Midnight zero-knowledge proofs.
 
 ![React](https://img.shields.io/badge/React-19-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![Vite](https://img.shields.io/badge/Vite-7-purple)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-blue)
+![Vite](https://img.shields.io/badge/Vite-8-purple)
 ![Midnight](https://img.shields.io/badge/Midnight-ZK-success)
-![MLH](https://img.shields.io/badge/MLH-Hackathon-orange)
 
----
+## Overview
 
-## 🌟 Why GhostAudit?
+GhostAudit helps teams prove software quality and security findings without exposing proprietary source code.  
+Audit outputs are converted into deterministic digests and anchored with Midnight tooling so stakeholders can verify claims with selective disclosure.
 
-GhostAudit enables privacy-preserving software due diligence by combining intelligent repository analysis with Midnight Zero-Knowledge Proofs. Instead of exposing proprietary source code, organizations can prove the integrity of repository audit results through cryptographic verification, helping founders, investors, and auditors establish trust while preserving confidentiality.
+## Core capabilities
 
---- GhostAudit — Privacy-Preserving Software Due Diligence
+- Analyze repository metadata and audit-related signals through a guided frontend workflow.
+- Structure findings into typed audit/proof models for consistent downstream use.
+- Integrate with Midnight SDK services for proof generation and verification flows.
+- Support investor-facing review and disclosure views in a dedicated portal.
 
-GhostAudit is a modern, enterprise-grade software due diligence platform built for startups, enterprises, investors, and M&A teams. It enables organizations to prove the quality, security, and maturity of their software repositories without revealing proprietary source code.
+## Tech stack
 
-By leveraging **Zero-Knowledge Proofs (ZKP)** and the **Midnight Network**, GhostAudit compiles code quality metrics and vulnerability logs into cryptographic commitments on-chain, allowing VC stakeholders to verify security claims selectively and trustlessly.
+- React 19 + TypeScript + Vite
+- Tailwind CSS
+- Midnight JavaScript SDK packages (`4.1.1`)
+- Compact smart contract (`contracts/audit-proof.compact`)
 
----
-
-## 🚀 Key Features
-
-- **Guided AI Analysis Pipeline**: Indexes folders, evaluates AST structures, runs dependency scans, checks secrets, and generates security maturity ratings.
-- **Strict Cryptographic Anchoring**: Generates deterministic SHA-256 digests of audit findings using the GhostAudit Canonical JSON (GACJ) standard.
-- **Zero-Knowledge Disclosures**: Anchors commitment digests on Midnight and selectively discloses verified ratings directly to investors without leaking code details.
-- **Midnight Verification Registry**: An independent portal for VC auditors to query on-chain proofs and validate startup disclosures.
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 19, TypeScript 6.0, Vite 8.1, Tailwind CSS
-- **Cryptography**: Web Crypto Subtle API (SHA-255 native hashing)
-- **Blockchain**: Midnight Network SDK (v4.1.1)
-- **Contract Language**: Compact Smart Contract Language (v0.23)
-
----
-
-## 📂 Project Architecture
-
-GhostAudit maintains a strict layered architecture separating React components from blockchain dependencies:
+## Repository structure
 
 ```text
+contracts/
+  audit-proof.compact
+
 src/
- ├── services/            # Service Layer (Business logic and SDK integrations)
- │     auditService.ts    # Pipeline stages and console logs
- │     aiService.ts       # AST scanners and metrics evaluators
- │     midnightService.ts # Wallet, contract, and proving engine integration
- │     providers.ts       # Midnight SDK provider managers
- │     errors.ts          # Typed custom exceptions
- │
- ├── models/              # Clean interfaces and typed structures
- │     audit.ts           # Audit results and digests
- │     proof.ts           # ZK proof metadata
- │     repository.ts      # Codebase parameters
- │
- ├── hooks/               # React Hooks Layer (Decoupled state machines)
- │     useAudit.ts        # Live audit console state
- │     useMidnight.ts     # Selective disclosure control state
- │
- ├── pages/               # React UI View Components
- │     LiveAudit.tsx      # Terminal workspace
- │     InvestorPortal.tsx # Disclosures controls
+  components/        Reusable UI building blocks
+  hooks/             App-level state and workflow hooks
+  models/            Typed domain models (audit, proof, repository)
+  pages/             Route-level UI screens
+  services/          Audit, AI, repository, and Midnight integrations
+  utils/             Shared helper utilities
 ```
 
----
+## Getting started
 
-## 🔒 AuditProof Compact Contract
+### Prerequisites
 
-The smart contract is written in **Compact** and located at [contracts/audit-proof.compact](file:///contracts/audit-proof.compact):
+- Node.js (current LTS recommended)
+- npm
 
-- **Ledger State**:
-  - `proofRegistry`: Maps `proofId` to public `auditDigest` hashes.
-  - `disclosedScores`: Maps `proofId` to selectively disclosed metrics.
-- **ZK Circuits**:
-  - `anchorAudit`: Registers a new audit commitment.
-  - `discloseScore`: Verifies that a disclosed score matches the on-chain commitment before writing to the public ledger.
+### Install dependencies
 
----
-
-## 🔨 Build & Validation Instructions
-
-### Installation
 ```bash
 npm install
 ```
 
-### Production Build
+### Run locally
+
 ```bash
-npm run build
+npm run dev
 ```
 
-### Verification Scripts
-To run Milestone integration checks, use:
+Open the local URL printed by Vite (typically `http://localhost:5173`).
+
+### Available scripts
+
 ```bash
-# Verify Milestone 2 (Wallet)
-npx tsx scratch/test_milestone2_wallet.ts
-
-# Verify Milestone 4 (Blockchain)
-npx tsx scratch/test_milestone4_blockchain.ts
-
-# Verify Milestone 5 (End-to-End Workflow)
-npx tsx scratch/test_milestone5_workflow.ts
+npm run dev      # Start development server
+npm run build    # Type-check and build production bundle
+npm run lint     # Run oxlint
+npm run preview  # Preview production build locally
 ```
+
+## Contract
+
+The Compact contract used for proof anchoring is located at:
+
+- `contracts/audit-proof.compact`
